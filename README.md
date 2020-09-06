@@ -30,7 +30,7 @@
 
 Head to git-scm.com and download git on your system before proceeding with the following steps.
 
-# Setup Instructions
+# Setup Instructions for Contribution
 
 **Step-1** : fork the project repository by pressing the fork button on top right. This creates your own fork of this repository. Once created it reads
 
@@ -80,3 +80,21 @@ upstream  https://github.com/tanishqvyas/DataAnalyticsProject.git (push)
 
 If you are able to see this as the output the you have succesfully forked, cloned and setup upstream for your repository.
 
+
+# Execution Instructions
+
+**On windows**
+
+Make sure you are in the correct directory, then type the following command
+
+```
+python main.py
+```
+
+**On Linux**
+
+Make sure you are in the correct directory, then type the following command
+
+```
+python3 main.py
+```
