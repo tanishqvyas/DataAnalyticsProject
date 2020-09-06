@@ -1,4 +1,4 @@
-##Data Analytics Project
+#Data Analytics Project
 
 
 
@@ -10,7 +10,15 @@
 |
 |---- utils
 |
+|---- plots
+|
+|---- report
+|
+|---- presentation
+|
 |---- main.py
+|
+|---- .gitignore
 |
 |---- README.md
 |
