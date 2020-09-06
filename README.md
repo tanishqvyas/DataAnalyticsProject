@@ -30,8 +30,7 @@
 
 **Step-1** : fork the project repository by pressing the fork button on top right. This creates your own fork of this repository. Once created it reads
 
-	<github-username>/DataAnalyticsProject
-forked from tanishqvyas/DataAnalyticsProject
+ <github-username>/DataAnalyticsProject forked from tanishqvyas/DataAnalyticsProject
 
 
 on the top left.
