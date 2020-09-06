@@ -32,9 +32,9 @@ Head to git-scm.com and download git on your system before proceeding with the f
 
 # Setup Instructions for Contribution
 
-**Step-1** : fork the project repository by pressing the fork button on top right. This creates your own fork of this repository. Once created it reads
+**Step-1** : Fork the project repository by pressing the fork button on top right. This creates your own fork of this repository. Once created it reads
 
- <github-username>/DataAnalyticsProject forked from tanishqvyas/DataAnalyticsProject
+ your-github-username/DataAnalyticsProject forked from tanishqvyas/DataAnalyticsProject
 
 
 on the top left.
