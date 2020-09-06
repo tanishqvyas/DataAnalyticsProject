@@ -40,7 +40,7 @@ Head to git-scm.com and download git on your system before proceeding with the f
 on the top left.
 
 
-**Step-2** : Open your own fork i.e. github.com/<your-github-username>/DataAnalyticsProject and click on the green color code button and copy the link which would look something like
+**Step-2** : Open your own fork i.e. github.com/your-github-username/DataAnalyticsProject and click on the green color code button and copy the link which would look something like
 
 ```
 https://github.com/<your-github-username>/DataAnalyticsProject.git
