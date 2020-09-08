@@ -6,15 +6,19 @@
 
 ```
 +
-|---- data
+|---- backend
+|	|
+|	|---- data
+|	|	|
+|	|	|---- test
+|	|
+|	|
+|	|---- plots
+|	|
+|	|---- plotter.py
+|	|
+|	|---- preprocessing.py
 |
-|---- utils
-|
-|---- plots
-|
-|---- report
-|
-|---- presentation
 |
 |---- main.py
 |
