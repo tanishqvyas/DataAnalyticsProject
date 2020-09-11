@@ -17,10 +17,6 @@ class Preprocessor:
     # Function to save modified dataset as a new version of DataFrame
     def save_file(self, df, data_path):
 
-        if os.path.exists(data_path):
-            shutil.rmtree(data_path)
-
-        os.mkdir(data_path)
         df.to_csv(data_path, index = False)
 
 

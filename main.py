@@ -70,6 +70,10 @@ if(meta_data["wannaPreprocess"]):
 	print(initialDataFrame.head(), "\n")
 
 
+	# Saving the preprocessed data
+	preprocessorObj.save_file(initialDataFrame, processed_csv_path)
+
+
 
 # Loading the preprocessed data file
 # dataFrame = pd.DataFrame(pd.read_csv(processed_csv_path))
