@@ -4,16 +4,11 @@ class Preprocessor:
         self.filename = filename
     	
     	
-    ## Helper Functions
-
-    # This functions fetches the CSV file as a dataframe and returns the same
-    def get_data_frame():
-        pass
-
     # This function fetches all the values in a column and returns the list
-    def get_column_as_list(col_name):
+    def get_column_as_list(dataFrame, col_name):
         pass
 
     
 if __name__ == '__main__':
+    pass
 
