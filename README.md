@@ -10,7 +10,7 @@
 |	|
 |	|---- data
 |	|	|
-|	|	|---- test
+|	|	|---- initialdata.csv
 |	|
 |	|
 |	|---- plots
