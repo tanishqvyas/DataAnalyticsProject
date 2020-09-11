@@ -17,12 +17,13 @@ from backend.preprocessing import Preprocessor
 
 # --Control Variables / Meta-data-- #
 meta_data = {
-	
+
 	"wannaPreprocess" : True,
 	"wannaPlot" : True,
-
 }
 
+# Objects of Custom class imports
+preprocessorObj = Preprocessor()
 
 
 ### Global Paths
@@ -37,7 +38,7 @@ processed_csv_path = os.path.join(data_dir_path, "processeddata.csv")
 
 
 # Getting the dataframe from the initialdata.csv
-initialDataFrame = pd.read_csv(initial_csv_path)
+initialDataFrame = pd.DataFrame(pd.read_csv(initial_csv_path))
 print("Churn Dataset Sample View (Initial)\n")
 print(initialDataFrame.head(), "\n")
 
@@ -50,8 +51,19 @@ if(meta_data["wannaPreprocess"]):
 	pass
 
 
+
 # Loading the preprocessed data file
-# dataFrame = pd.read_csv(processed_csv_path)
+# dataFrame = pd.DataFrame(pd.read_csv(processed_csv_path))
+
 
 if(meta_data["wannaPlot"]):
-	pass
+	
+	# Creating the object for Plotter class
+	plotterObj = Plotter(initialDataFrame)
+
+	plotterObj.plot_piechart("Geography", "title for the plot")
+	plotterObj.plot_bargraph("Geography", "title for the plot", "X labeling", "Y labeling")
+	# plotterObj.plot_histogram("CreditScore", "title for plot", "X labeling", "Y labeling")
+	plotterObj.plot_scatterPlot("CreditScore", "EstimatedSalary", "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_boxPlot(["CreditScore"], "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_normalProbabilityPlot(["CreditScore"], "title for the plot", "X labeling", "Y labeling")
