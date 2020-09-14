@@ -72,6 +72,7 @@ class Plotter(object):
 
 	# Function to plot pie-chart
 	def plot_piechart(self, column_title, title):
+		print("\n Plotting Pie Chart for : ", title)
 
 		# Pre processing
 		data_list = self.get_column_as_list(self.dataFrame, column_title)
@@ -89,6 +90,7 @@ class Plotter(object):
 
 	# Functon to plot bar graph
 	def plot_bargraph(self, column_title, title, xlabel, ylabel, isVertical = True):
+		print("\n Plotting Bar Chart for : ", title)
 
 		# Pre processing
 		data_list = self.get_column_as_list(self.dataFrame ,column_title)
@@ -116,6 +118,8 @@ class Plotter(object):
 
 	# Function to plot histogram
 	def plot_histogram(self, column_title, title, xlabel, ylabel, plotCurve=False):
+		print("\n Plotting Histogram for : ", title)
+
 		
 		# plotCurve variable is 1 if we wanna plot curve above histogram
 
@@ -142,6 +146,7 @@ class Plotter(object):
 
 	# Functon to plot Scatter Plot
 	def plot_scatterPlot(self, column_title1, column_title2, title, xlabel, ylabel):
+		print("\n Plotting Scatter Plot for : ", title)
 
 		# Pre processing
 		data_list1 = self.get_column_as_list(self.dataFrame, column_title1)
@@ -158,6 +163,7 @@ class Plotter(object):
 
 	# function to plot box plot
 	def plot_boxPlot(self, fieldList, title, xlabel, ylabel, isVertical=False):
+		print("\n Plotting Box Plot for : ", title)
 
 		#Test
 		#print(plt.style.available)
@@ -197,6 +203,7 @@ class Plotter(object):
 
 	# function to plot Normal Probability Plot
 	def plot_normalProbabilityPlot(self,column_list, title, xlabel, ylabel):
+		print("\n Plotting Normal Probab Plot for : ", title)
 
 		for column in column_list:
 
@@ -229,3 +236,7 @@ class Plotter(object):
 			plt.scatter(zscore_list, theoretical_quantile_list)
 
 			plt.show()
+
+
+if __name__ == '__main__':
+    pass

@@ -19,7 +19,8 @@ from backend.preprocessing import Preprocessor
 meta_data = {
 
 	"wannaPreprocess" : True,
-	"wannaPlot" : False,
+	"wannaPlot" : True,
+	"wannaTrain" : False
 }
 
 # Objects of Custom class imports
@@ -46,26 +47,31 @@ print(initialDataFrame.head(), "\n")
 
 #------------------------------ STEPS -----------------------------------------#
 
+# Preprocessing the data
 if(meta_data["wannaPreprocess"]):
 	
 	# Making the object of the Preprocessor
 	preprocessorObj = Preprocessor()
 
 	# Mapping Dicts
-	Geography_mapping = {
-		"France": 0,
-		"Germany" : 1,
-		"Spain" : 2
-	}
-
 	Gender_mapping = {
 		"Female" : 0,
 		"Male" : 1
 	}
 
+	Yes_No_mapping = {
+		"Yes" : 1,
+		"No" : 0,
+		"No internet service": 2
+	}
+
 	# Chaneg strings to integers
-	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "Geography", Geography_mapping)
-	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "Gender", Gender_mapping)
+	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "Partner", Yes_No_mapping)	
+	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "Dependents", Yes_No_mapping)	
+	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "PhoneService", Yes_No_mapping)	
+	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "StreamingMovies", Yes_No_mapping)	
+
+	
 	print("Processed Churn Dataset\n")
 	print(initialDataFrame.head(), "\n")
 
@@ -76,17 +82,24 @@ if(meta_data["wannaPreprocess"]):
 
 
 # Loading the preprocessed data file
-# dataFrame = pd.DataFrame(pd.read_csv(processed_csv_path))
+dataFrame = pd.DataFrame(pd.read_csv(processed_csv_path))
+dataFrame = dataFrame[1:2000]
 
 
+# Plotting the data
 if(meta_data["wannaPlot"]):
 	
 	# Creating the object for Plotter class
-	plotterObj = Plotter(initialDataFrame)
+	plotterObj = Plotter(dataFrame)
 
-	plotterObj.plot_piechart("Geography", "title for the plot")
-	plotterObj.plot_bargraph("Geography", "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_piechart("Partner", "title for the plot")
+	plotterObj.plot_bargraph("MonthlyCharges", "title for the plot", "X labeling", "Y labeling")
 	# plotterObj.plot_histogram("CreditScore", "title for plot", "X labeling", "Y labeling")
-	plotterObj.plot_scatterPlot("CreditScore", "EstimatedSalary", "title for the plot", "X labeling", "Y labeling")
-	plotterObj.plot_boxPlot(["CreditScore"], "title for the plot", "X labeling", "Y labeling")
-	plotterObj.plot_normalProbabilityPlot(["CreditScore"], "title for the plot", "X labeling", "Y labeling")
+	# plotterObj.plot_scatterPlot("MonthlyCharges", "TotalCharges", "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_boxPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_normalProbabilityPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
+
+
+# Training the model
+if(meta_data["wannaTrain"]):
+	pass
