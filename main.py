@@ -1,5 +1,5 @@
 '''
-@authors : ["Poojashree D", "Aparna Gopalakrishnan", "Tanishq Vyas"]
+@authors : ["Poojasree D", "Aparna Gopalakrishnan", "Tanishq Vyas"]
 
 '''
 
