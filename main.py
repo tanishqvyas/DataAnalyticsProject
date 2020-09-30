@@ -117,7 +117,6 @@ print("Number of Unique values  \n",dataFrame.nunique())
 if(meta_data["wannaPlot"]):
 
 
-	'''
 	# Creating the object for Plotter class
 	plotterObj = Plotter(dataFrame)
 
@@ -128,9 +127,9 @@ if(meta_data["wannaPlot"]):
 	plotterObj.plot_bargraph("MonthlyCharges", "title for the plot", "X labeling", "Y labeling")
 	# plotterObj.plot_histogram("CreditScore", "title for plot", "X labeling", "Y labeling")
 	# plotterObj.plot_scatterPlot("MonthlyCharges", "TotalCharges", "title for the plot", "X labeling", "Y labeling")
-	plotterObj.plot_boxPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
+	plotterObj.plot_boxPlot("MonthlyCharges", "Boxplot", "X labeling", "Y labeling")
 	plotterObj.plot_normalProbabilityPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
-	'''
+	
 	'''
 	sns.countplot(dataFrame.MultipleLines,hue=dataFrame.Churn)
 	plt.show()
@@ -159,6 +158,9 @@ if(meta_data["wannaPlot"]):
 	print("Multiplelines who left",dataFrame.query("MultipleLines ==0 and Churn ==1").shape[0],dataFrame.query("MultipleLines ==1 and Churn ==1").shape[0],dataFrame.query("MultipleLines ==2 and Churn ==1").shape[0])
 	print("Multiplelines who stayed",dataFrame.query("MultipleLines ==0 and Churn ==0").shape[0],dataFrame.query("MultipleLines ==1 and Churn ==0").shape[0],dataFrame.query("MultipleLines ==2 and Churn ==0").shape[0])
 	print("InternetSerivces who left",dataFrame.query("InternetService ==0 and Churn ==1").shape[0],dataFrame.query("InternetService==1 and Churn ==1").shape[0],dataFrame.query("InternetService ==2 and Churn ==1").shape[0])
+	print("Contract who left",dataFrame.query("Contract ==0 and Churn ==1").shape[0],dataFrame.query("Contract==1 and Churn ==1").shape[0],dataFrame.query("Contract ==2 and Churn ==1").shape[0])
+	print("PaymentMethod who left",dataFrame.query("PaymentMethod ==0 and Churn ==1").shape[0],dataFrame.query("PaymentMethod==1 and Churn ==1").shape[0],dataFrame.query("PaymentMethod ==2 and Churn ==1").shape[0],dataFrame.query("PaymentMethod ==3 and Churn ==1").shape[0])
+	print("TechSupport who left",dataFrame.query("TechSupport ==0 and Churn ==1").shape[0],dataFrame.query("TechSupport==1 and Churn ==1").shape[0],dataFrame.query("TechSupport ==2 and Churn ==1").shape[0])
 	print("People who are independent who left",dataFrame.query("Dependents==0 and Churn ==1").shape[0])
 	print("People who are dependent who left",dataFrame.query("Dependents ==1 and Churn ==1").shape[0])
 
