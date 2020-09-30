@@ -163,7 +163,25 @@ if(meta_data["wannaPlot"]):
 	print("TechSupport who left",dataFrame.query("TechSupport ==0 and Churn ==1").shape[0],dataFrame.query("TechSupport==1 and Churn ==1").shape[0],dataFrame.query("TechSupport ==2 and Churn ==1").shape[0])
 	print("People who are independent who left",dataFrame.query("Dependents==0 and Churn ==1").shape[0])
 	print("People who are dependent who left",dataFrame.query("Dependents ==1 and Churn ==1").shape[0])
+	
 
+	bins = [0,12,24,36,48,72]
+	df=dataFrame.loc[dataFrame['Churn'] == 1]
+	df = df.groupby(pd.cut(df['tenure'], bins=bins)).tenure.count()
+	#Lower bound excluded, upper included in each intweval
+	ax=df.plot(kind='bar')
+	for p in ax.patches:
+    		ax.annotate(str(p.get_height()), (p.get_x() * 1.005, p.get_height() * 1.005))
+	plt.show()
+	'''
+	#Checking if plot is correct
+	#Lower bound excluded, upper included
+	df=dataFrame.loc[dataFrame['Churn'] == 1]
+	res=df.loc[(df['tenure'] >12) & (df['tenure']<=24)]
+	print(res)
+	'''
+	
+	
 # Training the model
 if(meta_data["wannaTrain"]):
 	pass
