@@ -13,9 +13,25 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 
 
 
-class ArtificialNeuralNetwork:
+def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
 
-    def __init__(self):
-        pass
 
-    
+    model = Sequential()
+    model.add(Dense(64, input_dim=46, activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Dropout(rate=0.2))
+    model.add(Dense(8, activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Dropout(rate=0.2))
+    model.add(Dense(1, activation='sigmoid'))
+
+
+    model.compile(loss = "binary_crossentropy", optimizer = 'adam', metrics=['accuracy'])
+
+    history = model.fit(x_train, y_train, validation_data=(x_test, y_test), epochs=50, batch_size=8)
+
+    plt.plot(history.history['accuracy']) 
+    plt.plot(history.history['val_accuracy']) 
+    plt.title('model accuracy') 
+    plt.ylabel('accuracy')
+    plt.xlabel('epoch') 
+    plt.legend(['train', 'test'], loc='upper left') 
+    plt.show()

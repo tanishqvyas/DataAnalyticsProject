@@ -19,14 +19,15 @@ import seaborn
 from backend.plotter import Plotter
 from backend.preprocessing import Preprocessor
 
-from backend.RandomForest import RandomForest;
+from backend.RandomForest import RandomForest
+from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 
 
 
 # --Control Variables / Meta-data-- #
 meta_data = {
 
-	"wannaPreprocess" :True,
+	"wannaPreprocess" :False,
 	"wannaPlot" : False,	
 	"wannaRunSubmissionCode": False,
 	"wannaTrainTest": True
@@ -290,3 +291,4 @@ if(meta_data["wannaTrainTest"]):
 	RandomForest(x_train, x_test, y_train, y_test)
 	
 	# Artificial Neural Network
+	# ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
