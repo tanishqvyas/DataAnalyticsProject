@@ -11,6 +11,8 @@ import time
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+import seaborn
 
 # --Coustom Imports-- #
 from backend.plotter import Plotter
@@ -21,9 +23,8 @@ from backend.preprocessing import Preprocessor
 meta_data = {
 
 	"wannaPreprocess" :True,
-	"wannaPlot" : True,
-	"wannaTrain" : False,
-	"wannaTest" : False
+	"wannaPlot" : False,	
+	"wannaRunSubmissionCode": False
 }
 
 # Objects of Custom class imports
@@ -109,9 +110,77 @@ if(meta_data["wannaPreprocess"]):
 
 # Loading the preprocessed data file
 dataFrame = pd.DataFrame(pd.read_csv(processed_csv_path))
-#dataFrame = dataFrame[1:2000]
 print("Info about the set \n",dataFrame.describe())
 print("Number of Unique values  \n",dataFrame.nunique())
+
+
+# Code regarding the submission of the Project Report 1
+if meta_data["wannaRunSubmissionCode"] :
+	
+
+
+
+	# Part 1
+	seaborn.countplot(dataFrame.Churn)
+	plt.title("Customer Churned vs Retained")
+	blue_patch = mpatches.Patch(label='Retained')
+	orange_patch = mpatches.Patch(color = "orange", label='Churned')	
+	plt.legend(handles=[blue_patch, orange_patch])
+	plt.show()
+
+
+	# Part 2
+	plt.hist(dataFrame.MonthlyCharges)
+	plt.ylim(0,3000)
+	plt.title('Monthly Charges Distribution')
+	plt.xlabel('MonthlyCharges')
+	plt.show()
+
+	# Part 3
+	plt.title('Gender Distribution for Churning')
+	seaborn.countplot(dataFrame.gender,hue=dataFrame.Churn)
+	plt.legend(handles=[blue_patch, orange_patch])
+	plt.xlabel('Gender | (Female : 0, Male : 1)')
+	plt.show()
+
+	# Part 4
+	plt.title('Customer has Partner alongside Churning')
+	seaborn.countplot(dataFrame.Partner, hue=dataFrame.Churn)
+	plt.legend(handles=[blue_patch, orange_patch])
+	plt.xlabel('Partner | (No Partner : 0, Has Partner : 1)')
+	plt.show()	
+
+	# Part 5
+	plt.title('Seniority Distribution for Churning')
+	seaborn.countplot(initialDataFrame.SeniorCitizen ,hue=initialDataFrame.Churn)
+	plt.legend(handles=[blue_patch, orange_patch])
+	plt.xlabel('Seniority | (0 : Not Senior Citizen, 1 : Is Senior citizen')
+	plt.show()
+
+	# Plot 6
+	plt.title('Services Distribution')
+	first_patch = mpatches.Patch(label='No Service')
+	second_patch = mpatches.Patch(color = "orange", label='Using Service')	
+	third_patch = mpatches.Patch(color = "green", label='No Internet Service')	
+	seaborn.countplot(x="variable", hue="value", data=pd.melt(dataFrame[['OnlineSecurity', 'DeviceProtection', 'TechSupport', 'OnlineBackup']]))
+	plt.legend(handles=[first_patch, second_patch, third_patch ])
+	plt.xlabel("Services")
+	plt.show()
+
+	# Plot 7
+	plt.title('Customer has Dependents alongside Churning')
+	seaborn.countplot(dataFrame.Dependents, hue=dataFrame.Churn)
+	plt.legend(handles=[blue_patch, orange_patch])
+	plt.xlabel('Dependents | (No Dependents : 0, Has Dependents : 1)')
+	plt.show()	
+
+	# Plot 8
+	plt.title('Box Plot for Total Charges')
+	seaborn.boxplot(data = dataFrame, showfliers=True)
+	plt.show()
+
+
+
 
 # Plotting the data
 if(meta_data["wannaPlot"]):
@@ -120,15 +189,15 @@ if(meta_data["wannaPlot"]):
 	# Creating the object for Plotter class
 	plotterObj = Plotter(dataFrame)
 
-	plotterObj.plot_piechart("Churn", "Churn")
-	plotterObj.plot_piechart("gender", "title for the plot")
-	plotterObj.plot_piechart("Partner", "title for the plot")
-	plotterObj.plot_piechart("SeniorCitizen", "Senior")
-	plotterObj.plot_bargraph("MonthlyCharges", "title for the plot", "X labeling", "Y labeling")
+	# plotterObj.plot_piechart("Churn", "Churn")
+	# plotterObj.plot_piechart("gender", "title for the plot")
+	# plotterObj.plot_piechart("Partner", "title for the plot")
+	# plotterObj.plot_piechart("SeniorCitizen", "Senior")
+	# plotterObj.plot_bargraph("MonthlyCharges", "title for the plot", "X labeling", "Y labeling")
 	# plotterObj.plot_histogram("CreditScore", "title for plot", "X labeling", "Y labeling")
 	# plotterObj.plot_scatterPlot("MonthlyCharges", "TotalCharges", "title for the plot", "X labeling", "Y labeling")
-	plotterObj.plot_boxPlot("MonthlyCharges", "Boxplot", "X labeling", "Y labeling")
-	plotterObj.plot_normalProbabilityPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
+	# plotterObj.plot_boxPlot("MonthlyCharges", "Boxplot", "X labeling", "Y labeling")
+	# plotterObj.plot_normalProbabilityPlot(["MonthlyCharges"], "title for the plot", "X labeling", "Y labeling")
 	
 	'''
 	sns.countplot(dataFrame.MultipleLines,hue=dataFrame.Churn)
@@ -182,11 +251,4 @@ if(meta_data["wannaPlot"]):
 	'''
 	
 	
-# Training the model
-if(meta_data["wannaTrain"]):
-	pass
 
-
-# Testing the model
-if(meta_data["wannaTest"]):
-	pass
