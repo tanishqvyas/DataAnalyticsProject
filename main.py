@@ -18,13 +18,17 @@ import seaborn
 from backend.plotter import Plotter
 from backend.preprocessing import Preprocessor
 
+from backend.RandomForest import RandomForestClassifier;
+
+
 
 # --Control Variables / Meta-data-- #
 meta_data = {
 
-	"wannaPreprocess" :True,
+	"wannaPreprocess" :False,
 	"wannaPlot" : False,	
-	"wannaRunSubmissionCode": False
+	"wannaRunSubmissionCode": False,
+	"wannaTrainTest": True
 }
 
 # Objects of Custom class imports
@@ -252,3 +256,24 @@ if(meta_data["wannaPlot"]):
 	
 	
 
+
+############################################## MODEL TRAINING & Tersting #######################################
+
+# Loading the dataset from the cleaned csv
+dataSet = pd.read_csv(processed_csv_path);
+
+# Separating Features and Label
+features = dataSet.drop("Churn", axis=1)
+label = dataSet.Churn
+
+# train test split to globally pass the data to models
+x_train, x_test, y_train, y_test = train_test_split(features, label, test_size= 0.2, random_state= 42)
+
+
+if(meta_data["wannaTrainTest"]):
+
+	# Random Forest
+	randomForestObj = RandomForestClassifier(x_train, x_test, y_train, y_test)
+	randomForestObj.trainModel()
+	
+	# Artificial Neural Network
