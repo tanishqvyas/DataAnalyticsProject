@@ -17,7 +17,7 @@ class Preprocessor:
     # Function to save modified dataset as a new version of DataFrame
     def save_file(self, df, data_path):
 
-        df.to_csv(data_path, index = False)
+        df.to_csv(data_path, index = False, header=False)
 
 
     # function to replace the Strings with respective numbers

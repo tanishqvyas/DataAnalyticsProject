@@ -9,6 +9,7 @@
 import os
 import time
 import pandas as pd
+from sklearn.model_selection import train_test_split 
 import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -18,14 +19,14 @@ import seaborn
 from backend.plotter import Plotter
 from backend.preprocessing import Preprocessor
 
-from backend.RandomForest import RandomForestClassifier;
+from backend.RandomForest import RandomForest;
 
 
 
 # --Control Variables / Meta-data-- #
 meta_data = {
 
-	"wannaPreprocess" :False,
+	"wannaPreprocess" :True,
 	"wannaPlot" : False,	
 	"wannaRunSubmissionCode": False,
 	"wannaTrainTest": True
@@ -263,8 +264,21 @@ if(meta_data["wannaPlot"]):
 dataSet = pd.read_csv(processed_csv_path);
 
 # Separating Features and Label
-features = dataSet.drop("Churn", axis=1)
-label = dataSet.Churn
+features = dataSet.drop(dataSet.columns[[-1]], axis=1)
+features = features.drop(dataSet.columns[[0]], axis=1)
+label = dataSet[dataSet.columns[-1]]
+
+print("------------------------------------------")
+print(features)
+
+print("------------------------------------------")
+
+print("\n\n------------------------------------------")
+print(label)
+
+print("------------------------------------------")
+
+
 
 # train test split to globally pass the data to models
 x_train, x_test, y_train, y_test = train_test_split(features, label, test_size= 0.2, random_state= 42)
@@ -273,7 +287,6 @@ x_train, x_test, y_train, y_test = train_test_split(features, label, test_size= 
 if(meta_data["wannaTrainTest"]):
 
 	# Random Forest
-	randomForestObj = RandomForestClassifier(x_train, x_test, y_train, y_test)
-	randomForestObj.trainModel()
+	RandomForest(x_train, x_test, y_train, y_test)
 	
 	# Artificial Neural Network
