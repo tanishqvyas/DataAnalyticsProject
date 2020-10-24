@@ -27,7 +27,7 @@ from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 # --Control Variables / Meta-data-- #
 meta_data = {
 
-	"wannaPreprocess" :False,
+	"wannaPreprocess" :True,
 	"wannaPlot" : False,	
 	"wannaRunSubmissionCode": False,
 	"wannaTrainTest": True
@@ -104,7 +104,9 @@ if(meta_data["wannaPreprocess"]):
 	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "gender", String_to_Num_mapping)	
 	initialDataFrame = preprocessorObj.change_col_val_string_to_numeric(initialDataFrame, "Churn", String_to_Num_mapping)	
 
-	
+	initialDataFrame.TotalCharges.replace([" "], ["0"], inplace= True)
+	initialDataFrame.TotalCharges = initialDataFrame.TotalCharges.astype(float)
+		
 	print("Processed Churn Dataset\n")
 	print(initialDataFrame.head(), "\n")
 
