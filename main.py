@@ -293,4 +293,4 @@ if(meta_data["wannaTrainTest"]):
 	RandomForest(x_train, x_test, y_train, y_test)
 	
 	# Artificial Neural Network
-	# ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
+	ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)

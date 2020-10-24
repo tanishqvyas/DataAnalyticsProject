@@ -17,7 +17,7 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
 
 
     model = Sequential()
-    model.add(Dense(64, input_dim=46, activation='relu', kernel_constraint=maxnorm(3)))
+    model.add(Dense(64, input_dim=19, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dropout(rate=0.2))
     model.add(Dense(8, activation='relu', kernel_constraint=maxnorm(3)))
     model.add(Dropout(rate=0.2))
@@ -33,5 +33,5 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
     plt.title('model accuracy') 
     plt.ylabel('accuracy')
     plt.xlabel('epoch') 
-    plt.legend(['train', 'test'], loc='upper left') 
+    plt.legend(['train', 'validation'], loc='upper left') 
     plt.show()
