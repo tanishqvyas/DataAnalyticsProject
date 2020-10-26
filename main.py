@@ -21,7 +21,7 @@ from backend.preprocessing import Preprocessor
 
 from backend.RandomForest import RandomForest
 from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
-
+from backend.DecisionTree import DecisionTree
 
 
 # --Control Variables / Meta-data-- #
@@ -294,3 +294,6 @@ if(meta_data["wannaTrainTest"]):
 	
 	# Artificial Neural Network
 	ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
+
+	#DecisionTree
+	DecisionTree(x_train, x_test, y_train, y_test)
