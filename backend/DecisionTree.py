@@ -37,7 +37,7 @@ def DecisionTree(x_train, x_test, y_train, y_test):
     
     best_depth=find_best_depth(x_train,y_train) #obtained as 5
     # Create Decision Tree classifer object
-    dt = DecisionTreeClassifier(max_depth=best_depth,random_state=42)
+    dt = DecisionTreeClassifier(max_depth=best_depth,random_state=42)   #default uses gini index
 
     # Train Decision Tree Classifer
     dt = dt.fit(x_train,y_train)
@@ -50,3 +50,4 @@ def DecisionTree(x_train, x_test, y_train, y_test):
     print("(Decision Tree)Accuracy: \n",accuracy_score(y_test, y_pred))
     
     #tree.plot_tree(dt,filled=True)
+    return y_test,np.array(dt.predict_proba(x_test)[:,1]).reshape(-1,1)

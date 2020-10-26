@@ -30,3 +30,4 @@ def RandomForest(x_train, x_test, y_train, y_test):
     print(confusion_matrix(y_test,y_pred))
     print(classification_report(y_test,y_pred))
     print(accuracy_score(y_test, y_pred))
+    return y_test,np.array(rf_probs[:,1]).reshape(-1,1)

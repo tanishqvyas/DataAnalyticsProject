@@ -15,14 +15,16 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import seaborn
 
-# --Coustom Imports-- #
+# --Custom Imports-- #
 from backend.plotter import Plotter
 from backend.preprocessing import Preprocessor
 
 from backend.RandomForest import RandomForest
 from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 from backend.DecisionTree import DecisionTree
+from backend.NaiveBayes import NaiveBayes
 
+from sklearn.metrics import roc_curve,auc
 
 # --Control Variables / Meta-data-- #
 meta_data = {
@@ -290,10 +292,41 @@ x_train, x_test, y_train, y_test = train_test_split(features, label, test_size= 
 if(meta_data["wannaTrainTest"]):
 
 	# Random Forest
-	RandomForest(x_train, x_test, y_train, y_test)
+	y_rf_test,y_rf_prob=RandomForest(x_train, x_test, y_train, y_test)
 	
 	# Artificial Neural Network
-	ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
+	#ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
 
 	#DecisionTree
-	DecisionTree(x_train, x_test, y_train, y_test)
+	y_tree_test,y_tree_prob=DecisionTree(x_train, x_test, y_train, y_test)
+
+	#Naive Bayes
+	y_nb_test,y_nb_prob=NaiveBayes(x_train, y_train, x_test, y_test)
+
+	#ROC curve for accuracies
+	plt.figure(figsize=(7,7), dpi=100)
+	
+	#for random forest
+	rf_fpr, rf_tpr, threshold_rf = roc_curve(y_rf_test, y_rf_prob)
+	auc_rf = auc(rf_fpr, rf_tpr)
+	plt.plot(rf_fpr, rf_tpr, marker='.', label='Random Forest (auc = %0.3f)' % auc_rf)
+	
+	#for ann
+	#add im not sure
+
+	#for decision tree
+	tree_fpr, tree_tpr, threshold_tree = roc_curve(y_tree_test, y_tree_prob,drop_intermediate=False)
+	auc_tree = auc(tree_fpr, tree_tpr)
+	plt.plot(tree_fpr, tree_tpr, marker='.', label='Tree (auc = %0.3f)' % auc_tree)
+	
+	#for naive bayes
+	nb_fpr, nb_tpr, threshold_nb = roc_curve(y_nb_test, y_nb_prob,drop_intermediate=False)
+	auc_nb = auc(nb_fpr, nb_tpr)
+	plt.plot(nb_fpr, nb_tpr, marker='.', label='Naive Bayes (auc = %0.3f)' % auc_nb)
+	
+	plt.xlabel('FPR  (1-specificity)')
+	plt.ylabel('TPR  (sensitivity)')
+	plt.title('ROC')
+	plt.grid(True)
+	plt.legend()
+	plt.show()
