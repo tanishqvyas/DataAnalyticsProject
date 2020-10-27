@@ -302,6 +302,9 @@ if(meta_data["wannaTrainTest"]):
 
 	#Naive Bayes
 	y_nb_test,y_nb_prob=NaiveBayes(x_train, y_train, x_test, y_test)
+	
+	#KNN
+	y_knn_test,y_knn_prob=KNN(x_train, y_train, x_test, y_test)
 
 	#ROC curve for accuracies
 	plt.figure(figsize=(7,7), dpi=100)
@@ -323,6 +326,12 @@ if(meta_data["wannaTrainTest"]):
 	nb_fpr, nb_tpr, threshold_nb = roc_curve(y_nb_test, y_nb_prob,drop_intermediate=False)
 	auc_nb = auc(nb_fpr, nb_tpr)
 	plt.plot(nb_fpr, nb_tpr, marker='.', label='Naive Bayes (auc = %0.3f)' % auc_nb)
+	
+	#for KNN
+	knn_fpr, knn_tpr, threshold_knn = roc_curve(y_knn_test, y_knn_prob,drop_intermediate=False)
+	auc_knn = auc(knn_fpr, knn_tpr)
+	plt.plot(knn_fpr, knn_tpr, marker='.', label='K-Nearest Neighbors (auc = %0.3f)' % auc_knn)
+	
 	
 	plt.xlabel('FPR  (1-specificity)')
 	plt.ylabel('TPR  (sensitivity)')
