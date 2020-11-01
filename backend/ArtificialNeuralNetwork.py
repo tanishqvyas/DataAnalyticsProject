@@ -10,7 +10,8 @@ from keras.layers import Dropout
 from keras.constraints import maxnorm
 from keras.optimizers import RMSprop, Adam
 from keras.callbacks import ModelCheckpoint, EarlyStopping, ReduceLROnPlateau
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_curve, auc
+
 
 
 def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
@@ -64,9 +65,10 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
                 optimizer='adam', metrics=['accuracy'])
 
     history = model.fit(x_train, y_train, validation_data=(
-        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size)
+        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1)
 
 
+    
 
     plt.plot(history.history['accuracy'])
     plt.plot(history.history['val_accuracy'])
@@ -75,3 +77,8 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
     plt.xlabel('epoch')
     plt.legend(['train', 'validation'], loc='upper left')
     plt.show()
+
+    y_pred = model.predict(x_test).ravel()
+    return y_test, y_pred
+
+    
