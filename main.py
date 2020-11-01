@@ -23,7 +23,7 @@ from backend.RandomForest import RandomForest
 from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 from backend.DecisionTree import DecisionTree
 from backend.NaiveBayes import NaiveBayes
-
+from backend.knn import KNN
 from sklearn.metrics import roc_curve,auc
 
 # --Control Variables / Meta-data-- #
