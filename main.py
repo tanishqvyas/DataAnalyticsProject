@@ -24,6 +24,7 @@ from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 from backend.DecisionTree import DecisionTree
 from backend.NaiveBayes import NaiveBayes
 from backend.knn import KNN
+from backend.Ensemble import Stacked_Ensemble
 from sklearn.metrics import roc_curve, auc
 
 # --Control Variables / Meta-data-- #
@@ -329,6 +330,13 @@ if(meta_data["wannaTrainTest"]):
     # KNN
     y_knn_test, y_knn_prob = KNN(x_train, y_train, x_test, y_test)
 
+    # ENSEMBLE
+    ensemble_y_test, ensemble_y_pred = Stacked_Ensemble(x_train, x_test, y_train, y_test)
+
+
+
+
+    # Plotting ---------------------------------------------------->
     # ROC curve for accuracies
     plt.figure(figsize=(7, 7), dpi=100)
 
@@ -365,6 +373,15 @@ if(meta_data["wannaTrainTest"]):
     auc_knn = auc(knn_fpr, knn_tpr)
     plt.plot(knn_fpr, knn_tpr, marker='.',
              label='K-Nearest Neighbors (auc = %0.3f)' % auc_knn)
+
+    
+    # for Ensemble
+    ens_fpr, ens_tpr, threshold_ens = roc_curve(
+        ensemble_y_test, ensemble_y_pred, drop_intermediate=False)
+    auc_ens = auc(ens_fpr, ens_tpr)
+    plt.plot(ens_fpr, ens_tpr, marker='.',
+             label='Ensemble (Stacked) (auc = %0.3f)' % auc_ens)
+
 
     plt.xlabel('FPR  (1-specificity)')
     plt.ylabel('TPR  (sensitivity)')
