@@ -23,7 +23,8 @@ from backend.RandomForest import RandomForest
 from backend.ArtificialNeuralNetwork import ArtificialNeuralNetwork
 from backend.DecisionTree import DecisionTree
 from backend.NaiveBayes import NaiveBayes
-from backend.knn import KNN
+from backend.knn import KNearestNeighbour
+from backend.SVM import SupportVectorMachine
 from backend.Ensemble import Stacked_Ensemble
 from sklearn.metrics import roc_curve, auc
 
@@ -328,7 +329,10 @@ if(meta_data["wannaTrainTest"]):
     y_nb_test, y_nb_prob = NaiveBayes(x_train, y_train, x_test, y_test)
 
     # KNN
-    y_knn_test, y_knn_prob = KNN(x_train, y_train, x_test, y_test)
+    y_knn_test, y_knn_prob = KNearestNeighbour(x_train, y_train, x_test, y_test)
+
+    # SVM
+    y_svm_test, y_svm_prob = SupportVectorMachine(x_train, x_test, y_train, y_test)
 
     # ENSEMBLE
     ensemble_y_test, ensemble_y_pred = Stacked_Ensemble(x_train, x_test, y_train, y_test)
@@ -373,6 +377,14 @@ if(meta_data["wannaTrainTest"]):
     auc_knn = auc(knn_fpr, knn_tpr)
     plt.plot(knn_fpr, knn_tpr, marker='.',
              label='K-Nearest Neighbors (auc = %0.3f)' % auc_knn)
+
+
+    # for SVM
+    svm_fpr, svm_tpr, threshold_svm = roc_curve(
+        y_svm_test, y_svm_prob, drop_intermediate=False)
+    auc_svm = auc(svm_fpr, svm_tpr)
+    plt.plot(svm_fpr, svm_tpr, marker='.',
+             label='Support Vector Machine (auc = %0.3f)' % auc_svm)
 
     
     # for Ensemble

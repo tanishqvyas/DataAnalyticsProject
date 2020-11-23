@@ -18,8 +18,8 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
 
     # Parameters
     name_of_model = "ANN_churn1"
-    learning_rate = 0.001
-    num_of_epochs = 2
+    learning_rate = 0.007
+    num_of_epochs = 50
     batch_size = 8
     loss_list = ["binary_crossentropy", "categorical_crossentropy"]
 

@@ -2,12 +2,11 @@ import math
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import classification_report
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
 
-def KNN(x_train,y_train,x_test,y_test):
+
+def KNearestNeighbour(x_train,y_train,x_test,y_test):
 	# Feature Scaling
 	sc_X=StandardScaler() # Standardizes all data between -1 and 1
 	sc_X.fit(x_train)
