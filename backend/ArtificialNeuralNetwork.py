@@ -1,8 +1,4 @@
-import numpy as np
-import pandas as pd
 from matplotlib import pyplot as plt
-from sklearn.model_selection import train_test_split
-import keras
 from keras.models import Sequential
 from keras.layers import InputLayer
 from keras.layers import Dense
@@ -43,13 +39,16 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
 
     reduce_lr = ReduceLROnPlateau(
         monitor='val_accuracy',
-        factor=0.8,
+        factor=0.69,
         patience=2,
         verbose=1,
         min_delta=0.0001
     )
 
-    callbacks = [earlystop, checkpoint, reduce_lr]
+    # CALLBACKS
+    # callbacks = [earlystop, checkpoint, reduce_lr]
+    callbacks = [reduce_lr]
+
 
     # Model
     model = Sequential()
@@ -64,10 +63,11 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
     model.compile(loss=loss_list[0],
                 optimizer='adam', metrics=['accuracy'])
 
+    # history = model.fit(x_train, y_train, validation_data=(
+    #     x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1)
+
     history = model.fit(x_train, y_train, validation_data=(
-        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1)
-
-
+        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1, callbacks=callbacks)
     
 
     plt.plot(history.history['accuracy'])
