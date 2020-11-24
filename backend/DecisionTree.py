@@ -19,6 +19,8 @@ def run_cross_validation_on_trees(x, y, depths):
         cv_std.append(cv_scores.std())
         cv_accuracy.append(tree_model.fit(x, y).score(x, y))
     return np.array(cv_mean), np.array(cv_std),np.array(cv_accuracy)
+
+    
 def find_best_depth(x_train, y_train):
     #To find which is the best depth for the decision tree model
     # fitting trees of depth 1 to 25

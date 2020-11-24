@@ -51,6 +51,8 @@ def Stacked_Ensemble(x_train, x_test, y_train, y_test):
     # Predicting
     y_pred = model.predict(x_test)
 
+
+    # Printing the training results
     print("\n\n(Stacked Ensemble) Confusion Matrix: \n", confusion_matrix(y_true=y_test, y_pred=y_pred.round()))
     print("(Stacked Ensemble) Report: \n",classification_report(y_test,y_pred.round()))
     print("(Stacked Ensemble) Accuracy: \n",accuracy_score(y_test, y_pred.round()))

@@ -23,6 +23,7 @@ def KNearestNeighbour(x_train,y_train,x_test,y_test):
 	classifier.fit(x_train,y_train)
 	y_pred=classifier.predict(x_test)
 	
+	# Printing the training results
 	print("KNN Confusion Matrix:\n",confusion_matrix(y_test,y_pred))
 	print("KNN Report: \n",classification_report(y_test,y_pred))
 	print("KNN Accuracy: \n",accuracy_score(y_test, y_pred))	

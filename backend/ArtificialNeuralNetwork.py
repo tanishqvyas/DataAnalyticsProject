@@ -78,9 +78,11 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
     plt.legend(['train', 'validation'], loc='upper left')
     plt.show()
 
+    # Get predictions for the test data
     y_pred = model.predict(x_test)
 
 
+    # Printing the training results
     print("(Neural Network) Confusion Matrix: \n", confusion_matrix(y_true=y_test, y_pred=y_pred.round()))
     print("(Neural Network) Report: \n",classification_report(y_test,y_pred.round()))
     print("(Neural Network) Accuracy: \n",accuracy_score(y_test, y_pred.round()))
