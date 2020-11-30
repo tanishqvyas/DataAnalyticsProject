@@ -16,12 +16,12 @@
 |	|
 |	|---- plots
 |   |   |
-|	|   +
+    |	|   +
 |	|
 |	|---- plotter.py
 |	|
 |	|---- preprocessing.py
-| |
+|       |
 |       |---- ArtificialNeuralNetwork.py
 |       |
 |       |---- DecisionTree.py
@@ -120,3 +120,5 @@ Make sure you are in the correct directory, then type the following command
 ```
 python3 main.py
 ```
+
+The **main.py** has a meta-data dictionary to turn off-on the knobs for preprocessing, plotting and training. Change them to view sub part of the code in execution. **Default Settings** makes the whole code run from loading the data till the training and prediction. 
