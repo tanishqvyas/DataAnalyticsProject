@@ -22,21 +22,21 @@
 |	|
 |	|---- preprocessing.py
 | |
-| |---- ArtificialNeuralNetwork.py
-| |
-| |---- DecisionTree.py
-|   |
-|   |---- Ensemble.py
-|   |
-|   |---- knn.py
-|   |
-|   |---- NaiveBayes.py
-|   |
-|   |---- RandomForest.py
-|   |
-|   |---- SVM.py
-|   |
-|   +
+|       |---- ArtificialNeuralNetwork.py
+|       |
+|       |---- DecisionTree.py
+|       |
+|       |---- Ensemble.py
+|       |
+|       |---- knn.py
+|       |
+|       |---- NaiveBayes.py
+|       |
+|       |---- RandomForest.py
+|       |
+|       |---- SVM.py
+|       |
+|       +
 |
 |---- main.py
 |
