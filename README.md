@@ -21,10 +21,10 @@
 |	|---- plotter.py
 |	|
 |	|---- preprocessing.py
-|   |
-|   |---- ArtificialNeuralNetwork.py
-|   |
-|   |---- DecisionTree.py
+| |
+| |---- ArtificialNeuralNetwork.py
+| |
+| |---- DecisionTree.py
 |   |
 |   |---- Ensemble.py
 |   |
