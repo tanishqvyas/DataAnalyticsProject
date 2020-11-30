@@ -4,6 +4,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from sklearn import tree
+import pickle
+import os
 
 # function for fitting trees of various depths on the training data using cross-validation
 def run_cross_validation_on_trees(x, y, depths):
@@ -36,6 +38,9 @@ def find_best_depth(x_train, y_train):
     return best_depth
 
 def DecisionTree(x_train, x_test, y_train, y_test):
+
+    # Path to save model
+    path_to_model = os.path.join("model", "DecisionTree.sav")
     
     best_depth=find_best_depth(x_train,y_train) #obtained as 5
     # Create Decision Tree classifer object
@@ -50,6 +55,15 @@ def DecisionTree(x_train, x_test, y_train, y_test):
     print("(Decision Tree)Confusion Matrix:\n",confusion_matrix(y_test,y_pred))
     print("(Decision Tree)Report: \n",classification_report(y_test,y_pred))
     print("(Decision Tree)Accuracy: \n",accuracy_score(y_test, y_pred))
+
+    # Saving the Model
+    if not os.path.exists(os.path.dirname(path_to_model)):
+        try:
+            os.makedirs(os.path.dirname(path_to_model))
+        except OSError as exc: # Guard against race condition
+            print("File does not exist !!!!")
+
+    pickle.dump(dt, open(path_to_model, 'wb'))
     
     #tree.plot_tree(dt,filled=True)
     return y_test,np.array(dt.predict_proba(x_test)[:,1]).reshape(-1,1)

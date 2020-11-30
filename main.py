@@ -198,9 +198,9 @@ if meta_data["wannaRunSubmissionCode"]:
     plt.show()
 
     # Plot 8
-    plt.title('Box Plot for Total Charges')
-    seaborn.boxplot(data=dataFrame, showfliers=True)
-    plt.show()
+    # plt.title('Box Plot for Total Charges')
+    # seaborn.boxplot(data=dataFrame, showfliers=True)
+    # plt.show()
 
 
 # Plotting the data
@@ -210,7 +210,7 @@ if(meta_data["wannaPlot"]):
     plotterObj = Plotter(dataFrame)
 
     # plotterObj.plot_piechart("Churn", "Churn")
-    # plotterObj.plot_piechart("gender", "title for the plot")
+    # plotterObj.plot_piechart("gender", "Gender Distribution")
     # plotterObj.plot_piechart("Partner", "title for the plot")
     # plotterObj.plot_piechart("SeniorCitizen", "Senior")
     # plotterObj.plot_bargraph("MonthlyCharges", "title for the plot", "X labeling", "Y labeling")

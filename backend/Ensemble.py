@@ -9,11 +9,15 @@ from sklearn.ensemble import AdaBoostClassifier, AdaBoostRegressor
 from sklearn.naive_bayes import GaussianNB
 from sklearn.ensemble import StackingRegressor, StackingClassifier
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, roc_curve, auc
-
+import pickle
+import os
 
 
 
 def Stacked_Ensemble(x_train, x_test, y_train, y_test):
+
+    # Path to save model
+    path_to_model = os.path.join("model", "StackedEnsemble.sav")
 
     # define the base models
     level0 = list()
@@ -56,5 +60,14 @@ def Stacked_Ensemble(x_train, x_test, y_train, y_test):
     print("\n\n(Stacked Ensemble) Confusion Matrix: \n", confusion_matrix(y_true=y_test, y_pred=y_pred.round()))
     print("(Stacked Ensemble) Report: \n",classification_report(y_test,y_pred.round()))
     print("(Stacked Ensemble) Accuracy: \n",accuracy_score(y_test, y_pred.round()))
+
+    # Saving the Model
+    if not os.path.exists(os.path.dirname(path_to_model)):
+        try:
+            os.makedirs(os.path.dirname(path_to_model))
+        except OSError as exc: # Guard against race condition
+            print("File does not exist !!!!")
+            
+    pickle.dump(model, open(path_to_model, 'wb'))
 
     return y_test, y_pred
