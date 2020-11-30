@@ -16,11 +16,11 @@
 |	|
 |	|---- plots
 |   |   |
-    |	|   +
+|	|   +
 |	|
 |	|---- plotter.py
 |	|
-|	|---- preprocessing.py
+|	|---- preprocessing.py  
 |       |
 |       |---- ArtificialNeuralNetwork.py
 |       |
