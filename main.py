@@ -32,8 +32,8 @@ from sklearn.metrics import roc_curve, auc
 meta_data = {
 
     "wannaPreprocess": True,
-    "wannaPlot": False,
-    "wannaRunSubmissionCode": False,
+    "wannaPlot": True,
+    "wannaRunSubmissionCode": True,
     "wannaTrainTest": True
 }
 
@@ -316,10 +316,8 @@ if(meta_data["wannaTrainTest"]):
     # Random Forest
     y_rf_test, y_rf_prob = RandomForest(x_train, x_test, y_train, y_test)
 
-    print("---------------------------------------")
     # Artificial Neural Network
-    nn_y_test, nn_y_pred = ArtificialNeuralNetwork(
-        x_train, x_test, y_train, y_test)
+    nn_y_test, nn_y_pred = ArtificialNeuralNetwork(x_train, x_test, y_train, y_test)
 
     # DecisionTree
     y_tree_test, y_tree_prob = DecisionTree(x_train, x_test, y_train, y_test)
@@ -398,5 +396,5 @@ if(meta_data["wannaTrainTest"]):
     plt.ylabel('TPR  (sensitivity)')
     plt.title('ROC')
     plt.grid(True)
-    plt.legend()
+    plt.legend(loc="lower right", prop={'size': 22})
     plt.show()

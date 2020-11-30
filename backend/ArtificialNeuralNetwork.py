@@ -63,11 +63,11 @@ def ArtificialNeuralNetwork(x_train, x_test, y_train, y_test):
     model.compile(loss=loss_list[0],
                 optimizer='adam', metrics=['accuracy'])
 
-    # history = model.fit(x_train, y_train, validation_data=(
-    #     x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1)
-
     history = model.fit(x_train, y_train, validation_data=(
-        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1, callbacks=callbacks)
+        x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1)
+
+    # history = model.fit(x_train, y_train, validation_data=(
+    #     x_test, y_test), epochs=num_of_epochs, batch_size=batch_size, verbose=1, callbacks=callbacks)
     
 
     plt.plot(history.history['accuracy'])
